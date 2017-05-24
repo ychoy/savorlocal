@@ -30,3 +30,35 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 });
 
 // SMALL BIZ API ROUTES BELOW
+//
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
+/*  "/api/smallbiz"
+ *    GET: finds all smallbiz
+ *    POST: creates a new smallbiz
+ */
+
+app.get("/api/smallbiz", function(req, res) {
+});
+
+app.post("/api/smallbiz", function(req, res) {
+});
+
+/*  "/api/smallbiz/:id"
+ *    GET: find smallbiz by id
+ *    PUT: update smallbiz by id
+ *    DELETE: deletes smallbiz by id
+ */
+
+app.get("/api/smallbiz/:id", function(req, res) {
+});
+
+app.put("/api/smallbiz/:id", function(req, res) {
+});
+
+app.delete("/api/smallbiz/:id", function(req, res) {
+});
