@@ -1,3 +1,22 @@
-<p>
-  smallbiz-list works!
-</p>
+<div class="row">
+	<div class="col-md-5">
+    <h2>Favorite Local Savory Places</h2>
+    <ul class="list-group">
+      <li class="list-group-item"
+        *ngFor="let smallbiz of smallbiz"
+        (click)="selectSmallbiz(smallbiz)"
+        [class.active]="smallbiz === selectedSmallbiz">
+        {{smallbiz.name}}
+      </li>
+    </ul>
+    <button class="btn btn-warning" (click)="createNewSmallbiz()">New</button>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <smallbiz-details
+      [smallbiz]="selectedSmallbiz"
+      [createHandler]="addSmallbiz"
+      [updateHandler]="updateSmallbiz"
+      [deleteHandler]="deleteSmallbiz">
+    </smallbiz-details>
+  </div>
+</div>
