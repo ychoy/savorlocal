@@ -62,3 +62,29 @@ app.put("/api/smallbiz/:id", function(req, res) {
 
 app.delete("/api/smallbiz/:id", function(req, res) {
 });
+
+app.get("/api/smallbiz", function(req, res) {
+  db.collection(SMALLBIZ_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get smallbiz.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
+app.post("/api/smallbiz", function(req, res) {
+  var newSmallBiz = req.body;
+
+  if (!req.body.name) {
+    handleError(res, "Invalid user input", "Must provide a name.", 400);
+  }
+
+  db.collection(SMALLBIZ_COLLECTION).insertOne(newSmallBiz, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new smallbiz.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
+});
